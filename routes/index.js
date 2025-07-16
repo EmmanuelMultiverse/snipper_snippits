@@ -16,7 +16,6 @@ router.post("/snippets", (req, res) => {
 })
 
 router.get("/snippets", (req, res) => {
-
   let filteredData = data;
   if (req.query.lang) {
     filteredData = filteredData.filter(item => item.language == req.query.lang);
@@ -28,10 +27,10 @@ router.get("/snippets", (req, res) => {
 
 router.get("/snippets/:id", (req, res) => {
   let id = req.params.id;
-  console.log(id);
   let snippet = data.filter(item => item.id == id);
-  console.log(snippet);
+
   res.status(200).json(snippet);
+  
 })
 
 
