@@ -6,6 +6,7 @@ const data = require("../seedData");
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+  
 });
 
 router.post("/snippets", (req, res) => {
@@ -31,6 +32,19 @@ router.get("/snippets/:id", (req, res) => {
 
   res.status(200).json(snippet);
   
+})
+
+router.delete("/snippets/:id", (req, res) => {
+  const id = req.params.id;
+  const snippetIndex = data.findIndex(item => item.id == id);
+
+  if (snippetIndex > -1) {
+    data.splice(snippetIndex, 1);
+    res.status(200).json({ "message": "Delete successful!"});
+  } else{
+    res.status(400).json({ "message": "Could not find snippet"});
+  }
+
 })
 
 
